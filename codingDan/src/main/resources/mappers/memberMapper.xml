@@ -20,5 +20,19 @@
 		VALUES ( #{userid}, #{userpw}, #{username}, #{email} )
 	</insert>
 	
+	<select 
+		id="readMember" 
+		resultType="com.coding.gugu.domain.MemberVO"
+	>
+		SELECT * FROM TBL_MEMBER WHERE USERID = #{userid}
+	</select>
+	
+	<select 
+		id="readWithPw"
+		parameterType="com.coding.gugu.domain.MemberVO" 
+		resultType="com.coding.gugu.domain.MemberVO"
+	>
+		SELECT * FROM TBL_MEMBER WHERE USERID = #{userid} AND USERPW = #{userpw}
+	</select>
 
 </mapper>

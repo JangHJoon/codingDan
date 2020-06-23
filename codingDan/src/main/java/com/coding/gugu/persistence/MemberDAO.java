@@ -23,4 +23,19 @@ public class MemberDAO
 	{
 		this.sqlSession.insert(namespace + ".insertMember", vo);
 	}
+	
+	public MemberVO readMember(String userid) throws Exception
+	{
+		return this.sqlSession.selectOne(namespace + ".readMember", userid);
+	}
+	
+	public MemberVO readWithPw(String userid, String userpw) throws Exception
+	{
+		MemberVO vo = new MemberVO();
+		vo.setUserid(userid);
+		vo.setUserpw(userpw);
+		
+		return this.sqlSession.selectOne(namespace+".readWithPw", vo);
+	}
+	
 }

@@ -16,12 +16,12 @@ import com.coding.gugu.persistence.MemberDAO;
 public class MemberDAOTest
 {
 	@Autowired
-	private MemberDAO dao;
+	private MemberDAO memberDao;
 	
 	@Test
 	public void testTime() throws Exception
 	{
-		System.out.println(dao.getTime());
+		System.out.println(memberDao.getTime());
 	}
 	
 	@Test
@@ -33,6 +33,28 @@ public class MemberDAOTest
 		vo.setUsername("userZero");
 		vo.setEmail("user0@google.com");
 		
-		dao.insertMember(vo);
+		memberDao.insertMember(vo);
 	}
+	
+	@Test
+	public void readMember() throws Exception
+	{
+		String userid = "user0";
+		
+		MemberVO member = memberDao.readMember(userid);
+		
+		System.out.println(member);
+	}
+	
+	@Test
+	public void readMemberWithPw() throws Exception
+	{
+		String userid = "user0";
+		String userpw = "user0";
+		
+		MemberVO member = memberDao.readWithPw(userid, userpw);
+		
+		System.out.println(member);
+	}
+	
 }
