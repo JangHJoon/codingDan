@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.coding.gugu.domain.MemberVO;
-import com.coding.gugu.persistence.MemberDAO;
+import com.coding.gugu.sample.domain.MemberVO;
+import com.coding.gugu.sample.persistence.MemberDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(

@@ -12,7 +12,7 @@ public class MemberDAO
 	@Autowired
 	private SqlSession sqlSession;
 
-	private static final String namespace = "com.coding.gugu.MemberMapper";
+	private static final String namespace = "com.coding.gugu.SampleMapper";
 	
 	public String getTime()
 	{
