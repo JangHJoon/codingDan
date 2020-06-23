@@ -1,4 +1,4 @@
-package com.coding.gugu.web;
+package com.coding.gugu.sample.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.coding.gugu.domain.ProductVO;
+import com.coding.gugu.sample.domain.ProductVO;
 
 @Controller
 public class SampleController5

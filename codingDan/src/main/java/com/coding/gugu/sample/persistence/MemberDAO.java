@@ -1,10 +1,10 @@
-package com.coding.gugu.persistence;
+package com.coding.gugu.sample.persistence;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.coding.gugu.domain.MemberVO;
+import com.coding.gugu.sample.domain.MemberVO;
 
 @Repository
 public class MemberDAO

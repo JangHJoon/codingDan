@@ -1,4 +1,4 @@
-package com.coding.gugu.domain;
+package com.coding.gugu.sample.domain;
 
 import java.util.Date;
 

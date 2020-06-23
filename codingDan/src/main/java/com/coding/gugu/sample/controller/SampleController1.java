@@ -1,4 +1,4 @@
-package com.coding.gugu.web;
+package com.coding.gugu.sample.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
