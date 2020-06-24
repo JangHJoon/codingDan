@@ -49,6 +49,13 @@
 			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
 			<version>1.16</version>
 		</dependency>
+		<!-- 사이트 매시 -->
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		
 
 		<dependency>
 			<groupId>com.oracle.ojdbc</groupId>
