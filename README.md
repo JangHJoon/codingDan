@@ -2,5 +2,5 @@
 
 - spring legacy
 - sitemesh3
-- bootstrap
+- bootstrap4(SB Admin 2)
 - mybatis
