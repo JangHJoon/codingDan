@@ -1,4 +1,4 @@
-package com.coding.gugu;
+package com.coding.gugu.sample;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

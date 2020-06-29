@@ -4,4 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+	<!-- mybatis 해당 패키지 밑으로 @Alias 탐색 -->
+	<typeAliases>
+		<package name="com.coding.gugu" />
+	</typeAliases>
+	
 </configuration>

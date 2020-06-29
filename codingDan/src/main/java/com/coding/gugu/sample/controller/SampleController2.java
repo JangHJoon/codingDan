@@ -16,7 +16,7 @@ public class SampleController2
 	{
 		log.info("doC called......");
 		
-		return "sampleC";
+		return "sample/sampleC";
 	}
 	
 }

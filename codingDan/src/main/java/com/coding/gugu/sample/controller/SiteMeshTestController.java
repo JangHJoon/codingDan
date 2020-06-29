@@ -15,7 +15,7 @@ public class SiteMeshTestController
 	{
 		log.info("sitemesh test controller call....");
 		
-		return "sample_sitemesh";
+		return "sample/sample_sitemesh";
 	}
 	
 }

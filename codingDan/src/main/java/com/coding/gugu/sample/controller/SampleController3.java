@@ -22,7 +22,7 @@ public class SampleController3
 		
 		model.addAttribute("product", p);
 		
-		return "sampleD";
+		return "sample/sampleD";
 	}
 	
 }
