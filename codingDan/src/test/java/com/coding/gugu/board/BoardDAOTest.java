@@ -12,7 +12,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.coding.gugu.board.dao.BoardDAO;
-import com.coding.gugu.board.domain.BoardVO;
+import com.coding.gugu.board.domain.BoardData;
+import com.coding.gugu.board.domain.BoardParam;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -30,7 +31,7 @@ public class BoardDAOTest
 	public void insertTest() throws Exception
 	{
 		System.out.println(1);
-		BoardVO vo = new BoardVO();
+		BoardParam vo = new BoardParam();
 		vo.setTitle("새글");
 		vo.setContent("새글입니다.");
 		vo.setWriter("글쓴이");
@@ -45,7 +46,7 @@ public class BoardDAOTest
 		System.out.println(2);
 		System.out.println(dao.read(bno).toString());
 		
-		BoardVO vo = new BoardVO();
+		BoardParam vo = new BoardParam();
 		vo.setBno(bno);
 		vo.setTitle("수정글");
 		vo.setContent("수정글 입니다.");
@@ -55,9 +56,9 @@ public class BoardDAOTest
 	@Test 
 	public void readAllTest() throws Exception
 	{
-		List<BoardVO> list = dao.listAll();
+		List<BoardData> list = dao.listAll();
 		
-		for(BoardVO vo : list)
+		for(BoardData vo : list)
 		{
 			System.out.println(vo);
 		}

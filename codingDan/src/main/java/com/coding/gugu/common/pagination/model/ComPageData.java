@@ -2,7 +2,7 @@ package com.coding.gugu.common.pagination.model;
 
 import java.util.StringJoiner;
 
-public class ComPaginationVO
+public class ComPageData
 {
 	private String link;
 	private String queryString;
@@ -11,7 +11,7 @@ public class ComPaginationVO
 	private int pagePerView;
 	private long totalCount;
 	
-	public ComPaginationVO()
+	public ComPageData()
 	{
 		this.page = 1 ;
 		this.rowPerPage = 10 ;
@@ -105,9 +105,21 @@ public class ComPaginationVO
 
 	public String getQueryString()
 	{
+		if(queryString != null)
+		{
+			return queryString;
+		}
+		else
+		{
+			return "page="+page+"&rowPerPage="+rowPerPage+"&pagePerView="+pagePerView;
+		}
+	}
+	
+	public String getQueryStringExPage()
+	{
 		StringJoiner sj = new StringJoiner("&");
 		
-		String[] arrQry = queryString.split("&");
+		String[] arrQry = this.getQueryString().split("&");
 		for(int i=0 ; i<arrQry.length ; i++)
 		{
 			if(arrQry[i].indexOf("page=") < 0)
@@ -115,7 +127,6 @@ public class ComPaginationVO
 				sj.add(arrQry[i]);
 			}
 		}
-		
 		sj.add("page=");
 		
 		return sj.toString();

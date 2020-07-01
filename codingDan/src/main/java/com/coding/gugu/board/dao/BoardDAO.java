@@ -6,7 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.coding.gugu.board.domain.BoardVO;
+import com.coding.gugu.board.domain.BoardData;
+import com.coding.gugu.board.domain.BoardParam;
 
 @Repository
 public class BoardDAO
@@ -16,17 +17,17 @@ public class BoardDAO
 	
 	private static String namespace = "com.coding.gugu.BoardMapper";
 	
-	public int create(BoardVO vo) throws Exception
+	public int create(BoardParam vo) throws Exception
 	{
 		return this.session.insert(namespace+".create", vo);
 	}
 	
-	public BoardVO read(Integer bno) throws Exception
+	public BoardData read(Integer bno) throws Exception
 	{
 		return this.session.selectOne(namespace+".read", bno);
 	}
 	
-	public void update(BoardVO vo) throws Exception
+	public void update(BoardParam vo) throws Exception
 	{
 		this.session.update(namespace + ".update",vo );
 		
@@ -38,17 +39,17 @@ public class BoardDAO
 		
 	}
 	
-	public List<BoardVO> listAll() throws Exception
+	public List<BoardData> listAll() throws Exception
 	{
 		return this.session.selectList(namespace + ".listAll");
 	}
 	
-	public List<BoardVO> listPage(BoardVO vo) throws Exception
+	public List<BoardData> listPage(BoardParam vo) throws Exception
 	{
 		return this.session.selectList(namespace + ".listPage", vo);
 	}
 
-	public long listCnt(BoardVO vo)
+	public long listCnt(BoardParam vo)
 	{
 		return this.session.selectOne(namespace + ".listCnt", vo);
 	}

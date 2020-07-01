@@ -10,7 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.coding.gugu.board.dao.BoardDAO;
-import com.coding.gugu.board.domain.BoardVO;
+import com.coding.gugu.board.domain.BoardData;
+import com.coding.gugu.board.domain.BoardParam;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -27,14 +28,15 @@ public class BoardDAOTest2
 	{
 		int page = 3;
 		
-		BoardVO vo = new BoardVO();
+		BoardParam vo = new BoardParam();
+		
 		vo.setPage(page);
 		
-		List<BoardVO> list = dao.listPage(vo);
+		List<BoardData> list = dao.listPage(vo);
 		
 		System.out.println("list.size() : " +  list.size());
 		
-		for(BoardVO item : list)
+		for(BoardData item : list)
 		{
 			System.out.println(item);
 		}

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,27 +17,30 @@
 			<div class="table-responsive">
 				<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 					<div class="row">
-						<div class="col-sm-12 col-md-6">
-							<div class="dataTables_length" id="dataTable_length">
-								<label>
-									Show 
-									<select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-										<option value="10">10</option>
-										<option value="25">25</option>
-										<option value="50">50</option>
-										<option value="100">100</option>
-									</select> 
-									entries
-								</label>
+						<form name="searchForm">
+							<div class="form-row align-items-center">
+								<div class="col-auto my-1">
+									<label class="mr-sm-2 sr-only" for="searchType">Preference</label> <select name="searchType" class="custom-select mr-sm-2" id="searchType">
+										<option value="">---</option>
+										<option value="T" <c:if test="${vo.searchType eq 'T'}">selected="selected"</c:if>>제목</option>
+										<option value="C" <c:if test="${vo.searchType eq 'C'}">selected="selected"</c:if>>내용</option>
+										<option value="W" <c:if test="${vo.searchType eq 'W'}">selected="selected"</c:if>>작성자</option>
+										<option value="TC" <c:if test="${vo.searchType eq 'TC'}">selected="selected"</c:if>>제목+내용</option>
+										<option value="CW" <c:if test="${vo.searchType eq 'CW'}">selected="selected"</c:if>>내용+작성자</option>
+										<option value="TCW" <c:if test="${vo.searchType eq 'TCW'}">selected="selected"</c:if>>제목+내용+작성자</option>
+									</select>
+								</div>
+								<div class="col-auto my-1">
+									<label class="sr-only" for="searchKeyword">keyword</label> 
+									<input type="text" name="searchKeyword" class="form-control" id="searchKeyword" placeholder="검색"
+										value="${vo.searchKeyword}"
+									>
+								</div>
+								<div class="col-auto my-1">
+									<button type="button" onclick="searchList();" class="btn btn-primary">조회</button>
+								</div>
 							</div>
-						</div>
-						<div class="col-sm-12 col-md-6">
-							<div id="dataTable_filter" class="dataTables_filter">
-								<label>Search:
-									<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
-								</label>
-							</div>
-						</div>
+						</form>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
@@ -53,13 +56,13 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${list}" var="item">
-									<tr role="row">
-										<td>${item.bno}</td>
-										<td><a href="/board/read?bno=${item.bno}">${item.title}</a></td>
-										<td>${item.writer}</td>
-										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.regdate}" /></td>
-										<td><span class="badge badge-info">${item.viewcnt}</span></td>
-									</tr>
+										<tr role="row">
+											<td>${item.bno}</td>
+											<td><a href="/board/read?${vo.queryString}&bno=${item.bno}">${item.title}</a></td>
+											<td>${item.writer}</td>
+											<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.regdate}" /></td>
+											<td><span class="badge badge-info">${item.viewcnt}</span></td>
+										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -67,9 +70,10 @@
 					</div>
 
 					<c:import url="/common/pagination/includePagination">
-						<c:param name="link" value="${requestScope['javax.servlet.forward.request_uri']}"/>
-						<c:param name="rowPerPage" value="10"/>
-						<c:param name="pagePerView" value="5"/>
+						<c:param name="link" value="${vo.link}"/>
+						<c:param name="queryString" value="${vo.queryString}"/>
+						<c:param name="rowPerPage" value="${vo.rowPerPage}"/>
+						<c:param name="pagePerView" value="${vo.pagePerView}"/>
 						<c:param name="totalCount" value="${vo.totalCount}"/>
 						<c:param name="page" value="${vo.page}"/>
 					</c:import>
@@ -79,20 +83,5 @@
 		</div>
 	</div>
 	
-	<script>
-
-	 $(window).load(function
-	 {
-		 var msg = '${msg}';
-	
-		 if(msg)
-		 {
-			 alert(mng);
-		 }
-
-	 });
-
-	</script>
-
 </body>
 </html>

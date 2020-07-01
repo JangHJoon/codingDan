@@ -3,6 +3,49 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.coding.gugu.BoardMapper">
+
+	<sql id="condition">
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="searchType != null and searchKeyword != null">
+				<if test='searchType == "T"'>
+					AND TITLE LIKE '%' || #{searchKeyword} || '%'
+				</if>
+				<if test='searchType == "C"'>
+					AND CONTENT LIKE '%' || #{searchKeyword} || '%'
+				</if>
+				<if test='searchType == "W"'>
+					AND WRITER LIKE '%' || #{searchKeyword} || '%'
+				</if>
+				<if test='searchType == "TC"'>
+					AND 
+					(
+						TITLE LIKE '%' || #{searchKeyword} || '%'
+						OR	
+						WRITER LIKE '%' || #{searchKeyword} || '%'
+					)
+				</if>
+				<if test='searchType == "CW"'>
+					AND 
+					(
+						CONTENT LIKE '%' || #{searchKeyword} || '%'
+						OR	
+						WRITER LIKE '%' || #{searchKeyword} || '%'
+					)
+				</if>
+				<if test='searchType == "TCW"'>
+					AND 
+					(
+						TITLE LIKE '%' || #{searchKeyword} || '%'
+						OR	
+						CONTENT LIKE '%' || #{searchKeyword} || '%'
+						OR	
+						WRITER LIKE '%' || #{searchKeyword} || '%'
+					)
+				</if>
+			</if>
+		</trim>		
+	</sql>
+
 	<insert 
 		id="create" 
 	>
@@ -14,7 +57,7 @@
 	</insert>
 
 	<select 
-		id="read" resultType="boardVO"
+		id="read" resultType="boardData"
 	>
 		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, VIEWCNT
 		FROM TBL_BOARD
@@ -34,7 +77,7 @@
 	</delete>
 	
 	<select 
-		id="listPage" resultType="boardVO" parameterType="boardVO"
+		id="listPage" resultType="boardData" parameterType="boardParam"
 	>
 	<![CDATA[
 		SELECT
@@ -58,6 +101,10 @@
 									TB.BNO, TB.TITLE, TB.CONTENT, TB.WRITER, TB.REGDATE, TB.VIEWCNT
 								FROM
 									TBL_BOARD TB
+	]]>
+								<include refid="condition" />
+	<![CDATA[
+	
 								ORDER BY
 									TB.BNO DESC
 							) X
@@ -71,16 +118,15 @@
 	</select>
 	
 	<select 
-		id="listCnt" resultType="Long" parameterType="boardVO"
+		id="listCnt" resultType="Long" parameterType="boardParam"
 	>
 	<![CDATA[
 		SELECT
 			COUNT(1)
 		FROM
 			TBL_BOARD TB
-		ORDER BY
-			TB.BNO DESC
 	]]>
+		<include refid="condition" />
 	</select>
 
 </mapper>

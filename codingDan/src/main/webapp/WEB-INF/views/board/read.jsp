@@ -8,20 +8,21 @@
 <body>
 
 	<form name="readForm" role="form">
-		<input type="hidden" name="bno" value="${vo.bno}">
+		<input type="hidden" name="queryString" value="${vo.queryString}">
+		<input type="hidden" name="bno" value="${detail.bno}">
 	</form>
 
 	<div class="form-group">
 		<label for="title">제목</label> 
-		<input type="text" class="form-control" id="title" readonly="readonly" value="${vo.title}">
+		<input type="text" class="form-control" id="title" readonly="readonly" value="${detail.title}">
 	</div>
 	<div class="form-group">
 		<label for="content">내용</label>
-		<textarea class="form-control" id="content" rows="3" readonly="readonly">${vo.content}</textarea>
+		<textarea class="form-control" id="content" rows="3" readonly="readonly">${detail.content}</textarea>
 	</div>
 	<div class="form-group">
 		<label for="writer">글쓴이</label> 
-		<input type="text" class="form-control" id="writer" readonly="readonly" value="${vo.writer}">
+		<input type="text" class="form-control" id="writer" readonly="readonly" value="${detail.writer}">
 	</div>
 
 	<button id="btn_modify" type="submit" class="btn btn-warning">수정</button>
@@ -47,7 +48,7 @@
 		});
 
 		document.getElementById("btn_list").addEventListener("click", function() {
-		      self.location = "/board/listAll";
+		     self.location = "/board/listPage?${vo.queryString}";
 		});
 	});
 

@@ -4,15 +4,12 @@ import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
 
-import com.coding.gugu.common.CommonAbstructVO;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-@Data
-@EqualsAndHashCode(callSuper=false)
-@Alias("boardVO")
-public class BoardVO extends CommonAbstructVO
+@Alias("boardData")
+@Getter @Setter
+public class BoardData
 {
 	private Integer bno;
 	private String title;
@@ -20,4 +17,5 @@ public class BoardVO extends CommonAbstructVO
 	private String writer;
 	private Date regdate;
 	private int viewcnt;
+	
 }

@@ -32,12 +32,19 @@
   <script src="/static/bootstrap/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
+  <!-- 
   <script src="/static/bootstrap/vendor/chart.js/Chart.min.js"></script>
-
+  -->
+   
   <!-- Page level custom scripts -->
+  <!-- 
   <script src="/static/bootstrap/js/demo/chart-area-demo.js"></script>
   <script src="/static/bootstrap/js/demo/chart-pie-demo.js"></script>
   <script src="/static/bootstrap/js/demo/datatables-demo.js"></script>
+  -->
+  
+  <!-- Custom common js -->
+  <script src="/static/js/common/search.js"></script>
   
   <sitemesh:write property='head' />
 
@@ -115,5 +122,15 @@
 
 
 </body>
+
+<script>
+	$(document).ready(function() {
+		var msg = '${msg}';
+
+		if (msg) {
+			alert(msg);
+		}
+	});
+</script>
 
 </html>

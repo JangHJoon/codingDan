@@ -13,14 +13,14 @@
 							href="#"
 						</c:if>
 						<c:if test="${page.enablePrev}">
-							href="${page.link}?${page.queryString}${page.startPage - 1}"
+							href="${page.link}?${page.queryStringExPage}${page.startPage - 1}"
 						</c:if>
 						aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link"
 					>Previous</a>
 				</li>
 				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="num">
 				<li class="paginate_button page-item <c:if test="${num eq page.page}">active</c:if>">
-					<a href="${page.link}?${page.queryString}${num}" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">${num}</a>
+					<a href="${page.link}?${page.queryStringExPage}${num}" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">${num}</a>
 				</li>
 				</c:forEach>
 				<li class="paginate_button page-item next <c:if test="${not page.enableNext}">disabled</c:if>" id="dataTable_next">
@@ -29,7 +29,7 @@
 							href="#"
 						</c:if>
 						<c:if test="${page.enableNext}">
-							href="${page.link}?${page.queryString}${page.endPage + 1}"
+							href="${page.link}?${page.queryStringExPage}${page.endPage + 1}"
 						</c:if>
 						
 						aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link"
