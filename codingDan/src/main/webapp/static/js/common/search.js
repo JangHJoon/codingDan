@@ -29,7 +29,8 @@ function searchList()
     			
     		});
 		
-		// url param에서 페이징 관련 파라미터 추출
+		// url param에서 페이징 관련 파라미터 추출 => 무시
+		/*
 		location.search.substr(1).split("&")
 				.forEach(function(a){
 					var name = a.split("=")[0];
@@ -38,9 +39,10 @@ function searchList()
 						params.push(a);
 					}
 				});
+		*/
 		
 		var path = location.pathname;
-		
+	
 		location.href = path + "?" + params.join("&");
 	
 	}

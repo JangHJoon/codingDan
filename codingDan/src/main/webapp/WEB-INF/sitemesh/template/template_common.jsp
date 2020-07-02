@@ -44,7 +44,7 @@
   -->
   
   <!-- Custom common js -->
-  <script src="/static/js/common/search.js"></script>
+  <script src="/static/js/common/search.js?v=202007022345"></script>
   
   <sitemesh:write property='head' />
 

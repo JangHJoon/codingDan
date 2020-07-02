@@ -2,7 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <div class="row">
 	<div class="col-sm-12 col-md-5">
-		<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing ${page.rowStart+1} to ${page.rowEnd} of ${page.totalCount} entries</div>
+		<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
+			<c:if test="${page.totalCount > 0}">
+			Showing ${page.rowStart+1} to ${page.totalCount < page.rowEnd ? page.totalCount : page.rowEnd} of ${page.totalCount} entries
+			</c:if>
+			<c:if test="${page.totalCount eq 0}">
+			Showing 0 entry
+			</c:if>
+		</div>
 	</div>
 	<div class="col-sm-12 col-md-7">
 		<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">

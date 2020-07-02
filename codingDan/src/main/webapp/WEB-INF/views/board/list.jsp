@@ -39,6 +39,9 @@
 								<div class="col-auto my-1">
 									<button type="button" onclick="searchList();" class="btn btn-primary">조회</button>
 								</div>
+								<div class="col-auto my-1">
+									<button type="button" onclick="location.href='/board/register'" class="btn btn-primary">새글</button>
+								</div>
 							</div>
 						</form>
 					</div>
@@ -64,6 +67,11 @@
 											<td><span class="badge badge-info">${item.viewcnt}</span></td>
 										</tr>
 									</c:forEach>
+									<c:if test="${empty list}">
+										<tr>
+											<td colspan="100%">데이터가 없습니다.</td>
+										</tr>
+									</c:if>
 								</tbody>
 							</table>
 						</div>
