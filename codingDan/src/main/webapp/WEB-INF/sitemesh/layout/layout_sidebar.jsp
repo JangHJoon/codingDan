@@ -101,7 +101,14 @@
   <li class="nav-item">
     <a class="nav-link" href="/board/listPage">
       <i class="fas fa-fw fa-table"></i>
-      <span>Tables</span></a>
+      <span>Table</span></a>
+  </li>
+  
+  <!-- Nav Item - Tables -->
+  <li class="nav-item">
+    <a class="nav-link" href="/board/listPage">
+      <i class="fas fa-fw fa-reply"></i>
+      <span>Ajax-Reply</span></a>
   </li>
 
   <!-- Divider -->

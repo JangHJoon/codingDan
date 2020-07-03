@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coding.gugu.ReplyMapper">
+
+	<select 
+		id="listPage" resultType="replyData"
+	>
+	<![CDATA[
+		SELECT
+			*
+		FROM
+			(
+				SELECT
+					Y.*
+				FROM
+					(
+						SELECT
+							ROWNUM RN, X.*
+						FROM
+							(
+								SELECT
+									*
+								FROM
+									TBL_REPLY
+								WHERE
+									BNO = #{bno}
+								ORDER BY RNO DESC
+							) X
+						WHERE
+							ROWNUM <= ${rowEnd}
+					)Y
+				WHERE
+					Y.RN > ${rowStart}
+			) Z
+	]]>
+	</select>
+
+	<insert 
+		id="create" 
+	>
+	<selectKey keyProperty="rno" order="BEFORE" resultType="int">
+		SELECT NVL(MAX(RNO),0)+1 FROM TBL_REPLY WHERE BNO = ${bno}
+	</selectKey>
+		INSERT INTO TBL_REPLY (RNO, BNO , REPLYTEXT, REPLYER)
+		VALUES ( #{rno}, #{bno}, #{replytext}, #{replyer} )
+	</insert>
+
+	<update
+		id="update" 
+	>
+		UPDATE TBL_REPLY SET REPLYTEXT = #{replytext}, updatedate = SYSDATE WHERE RNO = #{rno}
+	</update>
+	
+	<delete 
+		id="delete"
+	>
+		DELETE FROM TBL_REPLY WHERE RNO = #{rno} AND BNO = #{bno}
+	</delete>
+	
+
+	
+
+</mapper>
