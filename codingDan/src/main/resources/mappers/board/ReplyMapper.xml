@@ -5,6 +5,19 @@
 <mapper namespace="com.coding.gugu.ReplyMapper">
 
 	<select 
+		id="listCnt" resultType="Long"
+	>
+	<![CDATA[
+		SELECT
+			COUNT(1)
+		FROM
+			TBL_REPLY
+		WHERE
+			BNO = #{bno}
+	]]>
+	</select>
+
+	<select 
 		id="listPage" resultType="replyData"
 	>
 	<![CDATA[

@@ -1,6 +1,8 @@
 package com.coding.gugu.board.controller;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.coding.gugu.board.domain.ReplyData;
 import com.coding.gugu.board.domain.ReplyParam;
 import com.coding.gugu.board.service.ReplyService;
 
@@ -46,21 +47,28 @@ public class ReplyController
 		return entity;
 	}
 	
-	@GetMapping("/{page}")
-	public ResponseEntity<List<ReplyData>> list(
+	@GetMapping(value={"","/{page}"})
+	public ResponseEntity<Map<String,Object>> list(
 			@PathVariable("bno") Integer bno,
-			@PathVariable("page") Integer page
+			@PathVariable("page") Optional<Integer> page
 			) throws Exception
 	{
-		ResponseEntity<List<ReplyData>> entity = null;
+		ResponseEntity<Map<String,Object>> entity = null;
 		
 		try
 		{
+			Map<String,Object> sendMap = new HashMap<>();
+			
 			ReplyParam param = new ReplyParam();
 			param.setBno(bno);
-			param.setPage(page);
+			param.setPage(page.orElse(1));
 			param.setRowPerPage(5);
-			entity = new ResponseEntity<List<ReplyData>>(service.listPage(param), HttpStatus.OK);
+			
+			sendMap.put("vo",param);
+			sendMap.put("list", service.listPage(param));
+			
+			
+			entity = new ResponseEntity<Map<String,Object>>(sendMap, HttpStatus.OK);
 		} catch (Exception e)
 		{
 			log.error(e.getMessage());

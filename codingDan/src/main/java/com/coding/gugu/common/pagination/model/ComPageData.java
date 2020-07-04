@@ -27,9 +27,9 @@ public class ComPageData
 	// for jsp
 	public boolean isEnableNext()
 	{
-		int nextPage = (((int)(this.page-1)/this.pagePerView) + 1)*this.pagePerView + 1;
-		int endPage = ((int)(this.totalCount-1)/this.rowPerPage)*this.pagePerView + 1;
-		return endPage >= nextPage;
+		int nextViewPage = (((int)(this.page-1)/this.pagePerView) + 1)*this.pagePerView + 1;
+		int lastPage = ((int)(this.totalCount-1)/this.rowPerPage) + 1;
+		return lastPage >= nextViewPage;
 	}
 	// for jsp
 	public int getStartPage()
@@ -39,9 +39,9 @@ public class ComPageData
 	// for jsp
 	public int getEndPage()
 	{
-		int nextPage = (((int)(this.page-1)/this.pagePerView) + 1)*this.pagePerView + 1;
-		int endPage = ((int)(this.totalCount-1)/this.rowPerPage)*this.pagePerView + 1;
-		return endPage > nextPage ? nextPage - 1 : endPage;
+		int nextViewPage = (((int)(this.page-1)/this.pagePerView) + 1)*this.pagePerView + 1;
+		int lastPage = ((int)(this.totalCount-1)/this.rowPerPage) + 1;
+		return nextViewPage > lastPage ? lastPage : nextViewPage - 1 ;
 	}
 	
 	// for myBatis

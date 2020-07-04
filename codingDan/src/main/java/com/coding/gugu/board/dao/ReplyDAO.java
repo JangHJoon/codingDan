@@ -17,6 +17,11 @@ public class ReplyDAO
 	
 	private static String namespace = "com.coding.gugu.ReplyMapper";
 	
+	public long listCnt(ReplyParam vo)
+	{
+		return this.session.selectOne(namespace + ".listCnt", vo);
+	}
+	
 	public List<ReplyData> listPage(ReplyParam vo) throws Exception
 	{
 		return this.session.selectList(namespace + ".listPage", vo);

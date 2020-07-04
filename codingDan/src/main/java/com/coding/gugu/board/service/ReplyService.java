@@ -26,6 +26,7 @@ public class ReplyService
 	
 	public List<ReplyData> listPage(ReplyParam vo) throws Exception
 	{
+		vo.setTotalCount(dao.listCnt(vo));
 		return dao.listPage(vo);
 	}
 	
