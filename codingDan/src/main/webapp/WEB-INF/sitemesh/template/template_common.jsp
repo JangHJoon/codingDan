@@ -43,6 +43,9 @@
   <script src="/static/bootstrap/js/demo/datatables-demo.js"></script>
   -->
   
+  <!-- handlebars -->
+  <script src="/static/js/handlebars-v4.7.6.js"></script>
+  
   <!-- Custom common js -->
   <script src="/static/js/common/search.js?v=202007022345"></script>
   
