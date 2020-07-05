@@ -1,4 +1,5 @@
 - spring legacy
 - sitemesh3
 - bootstrap4(SB Admin 2) https://startbootstrap.com/themes/sb-admin-2/
+- handlebars(html template)
 - mybatis
