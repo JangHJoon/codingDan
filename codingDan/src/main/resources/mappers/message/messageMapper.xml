@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coding.gugu.MessageMapper">
+
+
+	<insert 
+		id="create" 
+	>
+	<selectKey keyProperty="mno" order="BEFORE" resultType="int">
+		SELECT SEQ_TBL_MESSAGE.NEXTVAL FROM DUAL
+	</selectKey>
+		INSERT INTO TBL_MESSAGE (MNO, TARGETID, SENDID, MESSAGE )
+		VALUES ( #{mno}, #{targetid}, #{sendid}, #{message} )
+	</insert>
+
+	<select 
+		id="readMessage" resultType="messageVO"
+	>
+		SELECT * FROM TBL_MESSAGE WHERE MNO = #{mno}
+	</select>
+	
+	<update
+		id="updateStat"
+	>
+		UPDATE TBL_MESSAGE SET OPENDATE = SYSDATE WHERE MNO = #{mno}
+	</update>
+
+</mapper>

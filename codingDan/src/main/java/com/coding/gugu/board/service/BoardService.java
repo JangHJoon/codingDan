@@ -6,12 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.coding.gugu.board.dao.BoardDAO;
 import com.coding.gugu.board.domain.BoardData;
 import com.coding.gugu.board.domain.BoardParam;
 
 @Service
+@Transactional
 public class BoardService
 {
 	private static final Logger log = LoggerFactory.getLogger(BoardService.class);
