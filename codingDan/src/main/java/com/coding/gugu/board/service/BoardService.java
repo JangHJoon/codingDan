@@ -28,6 +28,7 @@ public class BoardService
 	
 	public BoardData read(Integer bno) throws Exception
 	{
+		dao.updateCnt(bno);
 		return dao.read(bno);
 	}
 	

@@ -59,8 +59,8 @@
 	<select 
 		id="read" resultType="boardData"
 	>
-		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, VIEWCNT
-		FROM TBL_BOARD
+		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, VIEWCNT, (SELECT COUNT(1) FROM TBL_REPLY TR WHERE TR.BNO = TB.BNO ) 
+		FROM TBL_BOARD TB
 		WHERE BNO = #{bno}
 	</select>
 	
@@ -87,6 +87,7 @@
 			, WRITER AS writer
 			, REGDATE AS regdate
 			, VIEWCNT AS viewcnt
+			, (SELECT COUNT(1) FROM TBL_REPLY TR WHERE TR.BNO = Z.BNO ) AS replycnt 
 		FROM
 			(
 				SELECT
@@ -128,5 +129,13 @@
 	]]>
 		<include refid="condition" />
 	</select>
+	
+	<update 
+		id="updateCnt" parameterType="boardParam"
+	>
+	<![CDATA[
+		UPDATE TBL_BOARD SET VIEWCNT = VIEWCNT + 1 WHERE BNO = #{bno}
+	]]>
+	</update>
 
 </mapper>

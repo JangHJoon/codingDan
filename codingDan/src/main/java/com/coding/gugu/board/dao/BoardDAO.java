@@ -53,4 +53,9 @@ public class BoardDAO
 	{
 		return this.session.selectOne(namespace + ".listCnt", vo);
 	}
+	
+	public void updateCnt(Integer vo)
+	{
+		this.session.update(namespace + ".updateCnt", vo);
+	}
 }

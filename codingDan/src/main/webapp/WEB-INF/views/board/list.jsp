@@ -61,7 +61,7 @@
 									<c:forEach items="${list}" var="item">
 										<tr role="row">
 											<td>${item.bno}</td>
-											<td><a href="/board/read?${vo.queryString}&bno=${item.bno}">${item.title}</a></td>
+											<td><a href="/board/read?${vo.queryString}&bno=${item.bno}">${item.title}[${item.replycnt}]</a></td>
 											<td>${item.writer}</td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${item.regdate}" /></td>
 											<td><span class="badge badge-info">${item.viewcnt}</span></td>
