@@ -50,4 +50,13 @@
 	</bean>
 	<tx:annotation-driven />
 	
+	<!-- 인터셉터  -->
+	<bean id="commonInterceptor" class="com.coding.gugu.common.CommonInterceptor"></bean>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<ref bean="commonInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>
