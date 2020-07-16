@@ -19,4 +19,6 @@ public class BoardData
 	private int viewcnt;
 	private int replycnt;
 	
+	private String[] files;
+	
 }

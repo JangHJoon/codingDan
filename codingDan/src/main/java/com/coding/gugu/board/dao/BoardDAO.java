@@ -58,4 +58,19 @@ public class BoardDAO
 	{
 		this.session.update(namespace + ".updateCnt", vo);
 	}
+	
+	public List<String> selectAttach(Integer bno)
+	{
+		return this.session.selectList(namespace + ".selectAttach", bno);
+	}
+
+	public void deleteAllAttach(Integer bno)
+	{
+		this.session.delete(namespace + ".deleteAllAttach", bno);
+	}
+
+	public void insertAttach(BoardParam vo)
+	{
+		this.session.insert(namespace + ".insertAttach", vo);
+	}
 }

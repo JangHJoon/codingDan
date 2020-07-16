@@ -59,7 +59,7 @@
 	<select 
 		id="read" resultType="boardData"
 	>
-		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, VIEWCNT, (SELECT COUNT(1) FROM TBL_REPLY TR WHERE TR.BNO = TB.BNO ) 
+		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE
 		FROM TBL_BOARD TB
 		WHERE BNO = #{bno}
 	</select>
@@ -137,5 +137,32 @@
 		UPDATE TBL_BOARD SET VIEWCNT = VIEWCNT + 1 WHERE BNO = #{bno}
 	]]>
 	</update>
+	
+	<select id="selectAttach" resultType="String">
+	<![CDATA[
+		SELECT FULLNAME FROM TBL_ATTACH WHERE BNO = #{bno}
+	]]>
+	</select>
+	
+	<delete id="deleteAllAttach">
+	<![CDATA[
+		DELETE FROM TBL_ATTACH WHERE BNO = #{bno}
+	]]>
+	</delete>
+	
+	<insert 
+		id="insertAttach" parameterType="boardParam"
+	>
+	<![CDATA[
+		INSERT
+			INTO
+			TBL_ATTACH (
+				BNO, FULLNAME , REGDATE
+			)
+		VALUES (
+				#{bno}, #{fileName}, SYSDATE
+			)
+	]]>
+	</insert>
 
 </mapper>

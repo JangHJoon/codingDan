@@ -2,6 +2,9 @@ package com.coding.gugu.common.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Optional;
@@ -60,7 +63,7 @@ public class CommonUploadUtils
 		sb.append(File.separator);
 		sb.append(new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1));
 		sb.append(File.separator);
-		sb.append(new DecimalFormat("00").format(cal.get(cal.get(Calendar.DATE))));
+		sb.append(new DecimalFormat("00").format(cal.get(Calendar.DATE)));
 		
 		return sb.toString();
 	}
@@ -84,5 +87,24 @@ public class CommonUploadUtils
 	public static boolean isImage(String contentType)
 	{
 		return Optional.ofNullable(contentType).orElse("").startsWith("image/");
+	}
+	
+	public static void deleteFile(String rootPath, String fileName) throws Exception
+	{
+		File file = new File(rootPath, fileName);
+		
+		Path path = file.toPath();
+		String contentType = Files.probeContentType(path);
+		boolean isImage = CommonUploadUtils.isImage(contentType);
+		if(isImage)
+		{
+			int split = fileName.indexOf("s_");
+			String orgfileName = fileName.substring(0,split) + fileName.substring(split + 2);
+			File orgFile = new File(rootPath, orgfileName);
+			orgFile.delete();
+		}
+		
+		file.delete();
+		
 	}
 }

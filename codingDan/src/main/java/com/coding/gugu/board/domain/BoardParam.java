@@ -18,4 +18,7 @@ public class BoardParam extends ComPageData
 
 	private String searchType;
 	private String searchKeyword;
+	
+	private String[] files;
+	private String fileName;
 }
